@@ -1,0 +1,39 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega328P"</DEVICE>
+ <WORKING_DIR>C:\Users\e-mel\OneDrive\Documentos\Atmel Studio\7.0\PreLab1\PreLab1\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\e-mel\OneDrive\Documentos\Atmel Studio\7.0\PreLab1\PreLab1\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc</FILE>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\e-mel\OneDrive\Documentos\Atmel Studio\7.0\PreLab1\PreLab1\Debug\PreLab1.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>PreLab1.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>PreLab1.map</FILE>
+  <FILE>PreLab1.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <setup><FILE>C:\Users\e-mel\OneDrive\Documentos\Atmel Studio\7.0\PreLab1\PreLab1\main.asm</FILE><LINE>22</LINE></setup>
+  <loop><FILE>C:\Users\e-mel\OneDrive\Documentos\Atmel Studio\7.0\PreLab1\PreLab1\main.asm</FILE><LINE>47</LINE></loop>
+  <Incre1><FILE>C:\Users\e-mel\OneDrive\Documentos\Atmel Studio\7.0\PreLab1\PreLab1\main.asm</FILE><LINE>123</LINE></Incre1>
+  <Decre1><FILE>C:\Users\e-mel\OneDrive\Documentos\Atmel Studio\7.0\PreLab1\PreLab1\main.asm</FILE><LINE>140</LINE></Decre1>
+  <Incre2><FILE>C:\Users\e-mel\OneDrive\Documentos\Atmel Studio\7.0\PreLab1\PreLab1\main.asm</FILE><LINE>157</LINE></Incre2>
+  <Decre2><FILE>C:\Users\e-mel\OneDrive\Documentos\Atmel Studio\7.0\PreLab1\PreLab1\main.asm</FILE><LINE>174</LINE></Decre2>
+  <delay1><FILE>C:\Users\e-mel\OneDrive\Documentos\Atmel Studio\7.0\PreLab1\PreLab1\main.asm</FILE><LINE>125</LINE></delay1>
+  <delay2><FILE>C:\Users\e-mel\OneDrive\Documentos\Atmel Studio\7.0\PreLab1\PreLab1\main.asm</FILE><LINE>142</LINE></delay2>
+  <delay3><FILE>C:\Users\e-mel\OneDrive\Documentos\Atmel Studio\7.0\PreLab1\PreLab1\main.asm</FILE><LINE>159</LINE></delay3>
+  <delay4><FILE>C:\Users\e-mel\OneDrive\Documentos\Atmel Studio\7.0\PreLab1\PreLab1\main.asm</FILE><LINE>176</LINE></delay4>
+  <Suma><FILE>C:\Users\e-mel\OneDrive\Documentos\Atmel Studio\7.0\PreLab1\PreLab1\main.asm</FILE><LINE>191</LINE></Suma>
+  <delay5><FILE>C:\Users\e-mel\OneDrive\Documentos\Atmel Studio\7.0\PreLab1\PreLab1\main.asm</FILE><LINE>193</LINE></delay5>
+ </LABELS>
+</ASSEMBLER_INFO>
