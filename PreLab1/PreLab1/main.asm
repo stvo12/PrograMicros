@@ -1,6 +1,6 @@
 /*
  Universidad del Valle de Guatemala
- IE2023: Programación de microcontrolodares
+ IE2023: ProgramaciÃ³n de microcontrolodares
  Autor : e-mel
  Proyecto: PreLab1.asm
  Archivo: Lab1.asm
@@ -12,7 +12,7 @@
 .cseg
 .org 0x00
 
-.equ LEDSUMA = (1<<PD6) | (1<<PD7) | (1<<PB4) | (1<<PB5) | (1<<PC5)
+//.equ LEDSUMA = (1<<PD6) | (1<<PD7) | (1<<PB4) | (1<<PB5) | (1<<PC5)
 //Config
 LDI R16, LOW(RAMEND)
 OUT SPL, R16
@@ -49,30 +49,30 @@ loop:
 	SBRS R16, PC0 ; salta si el bit PC0 esta en 1
 
 	RJMP Incre1
-	OUT PORTD, R19
+	OUT PORTD, R19 ; salida del primer contador
 
 
 	IN R16, PINC
 	SBRS R16, PC1 ; salta si el bit PC1 esta en 1
 
 	CALL Decre1
-	OUT PORTD, R19
+	OUT PORTD, R19  ; salida del primer contador
 
 
 	IN R16, PINC
 	SBRS R16, PC2 ; salta si el bit PC2 esta en 1
 
 	RJMP Incre2
-	OUT PORTB, R20
+	OUT PORTB, R20 ; salida del segundo contador
 
 
 	IN R16, PINC
 	SBRS R16, PC3 ; salta si el bit PC3 esta en 1
 
 	CALL Decre2
-	OUT PORTB, R20
+	OUT PORTB, R20 ; salida del segundo contador
 
-	/*
+	/* LOGICA SUMA
 	IN R16, PINC
 	SBRS R16, PC4 ; salta si el bit PC4 esta en 1
 
@@ -119,7 +119,7 @@ loop:
     OUT PORTC, R28
 	*/
 	RJMP loop
-//
+//Logica DelayBounce e incrementar primer contador
 Incre1:
 	LDI R16, 100
 	delay1:
@@ -136,7 +136,7 @@ Incre1:
 	LSL R19
 
 	RJMP Loop
-
+//Logica DelayBounce y decrecer primer contador
 Decre1:
     LDI R16, 100
 	delay2:
@@ -153,7 +153,7 @@ Decre1:
 	LSL R19
 
 	RJMP Loop
-
+//Logica DelayBounce e incrementar segundo contador
 Incre2:
 	LDI R16, 100
 	delay3:
@@ -170,7 +170,7 @@ Incre2:
 	//LSL R19
 
 	RJMP Loop
-
+//Logica DelayBounce y decrecer segundo contador
 Decre2:
     LDI R16, 100
 	delay4:
@@ -187,7 +187,7 @@ Decre2:
 	//LSL R19
 
 	RJMP Loop
-
+//Logica suma
 Suma:
 	LDI R16, 100
 	delay5:
