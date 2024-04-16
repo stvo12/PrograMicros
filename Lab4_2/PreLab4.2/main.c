@@ -26,33 +26,33 @@ int main(void) {
 	initADC();
 	sei();
 
-	uint8_t boton_estado_PC4 = 1; // Estado anterior del botÛn PC4
-	uint8_t boton_estado_PC5 = 1; // Estado anterior del botÛn PC5
+	uint8_t boton_estado_PC4 = 1; // Estado anterior del bot√≥n PC4
+	uint8_t boton_estado_PC5 = 1; // Estado anterior del bot√≥n PC5
 
 	while (1) {
 			
-		// Incrementar contador si el botÛn PC4 se presiona y se libera
+		// Incrementar contador si el bot√≥n PC4 se presiona y se libera
 		if (!(PINC & (1 << PC4)) && boton_estado_PC4) {
 			contador--;
 			if (contador > 255) {
 				contador = 0;
 			}
-			boton_estado_PC4 = 0; // Marcar que el botÛn PC4 est· presionado
+			boton_estado_PC4 = 0; // Marcar que el bot√≥n PC4 est√° presionado
 		}
-		// Actualizar el estado anterior del botÛn PC4
+		// Actualizar el estado anterior del bot√≥n PC4
 		if (PINC & (1 << PC4)) {
 			boton_estado_PC4 = 1;
 		}
 
-		// Decrementar contador si el botÛn PC5 se presiona y se libera
+		// Decrementar contador si el bot√≥n PC5 se presiona y se libera
 		if (!(PINC & (1 << PC5)) && boton_estado_PC5) {
 			contador++;
 			if (contador < 0) {
 				contador = 255;
 			}
-			boton_estado_PC5 = 0; // Marcar que el botÛn PC5 est· presionado
+			boton_estado_PC5 = 0; // Marcar que el bot√≥n PC5 est√° presionado
 		}
-		// Actualizar el estado anterior del botÛn PC5
+		// Actualizar el estado anterior del bot√≥n PC5
 		if (PINC & (1 << PC5)) {
 			boton_estado_PC5 = 1;
 		}
@@ -61,7 +61,7 @@ int main(void) {
 		
 		Salidas();
 		
-		if (contador == ValorADC)
+		if (ValorADC > contador)
 		{
 			PORTD |= (1<<PD7);
 		} 
@@ -75,7 +75,7 @@ int main(void) {
 }
 
 void init_ports(void) {
-	// ConfiguraciÛn de pines de entrada y salida
+	// Configuraci√≥n de pines de entrada y salida
 	// Pines PC0-PC3 como salida para los LEDs
 	DDRC |= 0x0F;
 	// Pines PC4 y PC5 como entrada para los botones
@@ -132,5 +132,5 @@ void Salidas(void){
 	_delay_ms(5);
 	// Mostrar el valor del contador en los LEDs
 	PORTB = contador & 0x0F; // Los 4 bits menos significativos en PB0-PB3
-	PORTC = (contador >> 4) & 0x0F; // Los 4 bits m·s significativos en PC0-PC3
+	PORTC = (contador >> 4) & 0x0F; // Los 4 bits m√°s significativos en PC0-PC3
 }
