@@ -6,12 +6,30 @@
  */ 
 
 #define F_CPU 16000000
+#include "Functions/Functions.h"
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
+#include <stdbool.h>
+#include <stdio.h>
 
+uint8_t ValorADC = 0;
 uint8_t bufferTX = 0;
 uint8_t bufferRX = 0;
+uint8_t centenas = 0;
+uint8_t decenas = 0;
+uint8_t unidades = 0;
+uint8_t mosCen = 0;
+uint8_t mosDec = 0;
+uint8_t mosUni = 0;
+bool mostrar = false;
+
+void initUART(void);
+void WriteUART(char Caracter);
+void TextUART(char * Texto);
+void UART_msj();
+void OutLEDS();
+void Menu();
 
 void initUART(void){
 	//rx y tx como entrada y salida
@@ -50,7 +68,7 @@ void setup(void){
 
 void UART_msj(){
 	WriteUART('\n');
-	WriteUART('C');
+	/*WriteUART('C');
 	WriteUART('A');
 	WriteUART('R');
 	WriteUART('A');
@@ -70,22 +88,34 @@ void UART_msj(){
 	WriteUART('R');
 	WriteUART('\n');
 	WriteUART(10);
-	WriteUART(13);
-	/*
-	TextUART("Hola mundo SI");
+	WriteUART(13);*/
+	
+	TextUART("Caracter a mostrar");
 	WriteUART(10);
 	WriteUART(13);
-	*/
+	
+}
+
+void Menu(){
+	WriteUART(10);
+	WriteUART(13);
+	TextUART("1. Leer valor potenciometro");
+	WriteUART(10);
+	WriteUART(13);
+	TextUART("2. Enviar ASCII");
+	WriteUART(10);
+	WriteUART(13);
 }
 
 int main(void)
 {
     setup();
+	initADC(1,6,128);
 	sei();
-	UART_msj();
+	Menu();
     while (1) 
     {
-		
+		readADC(6);
     }
 }
 
@@ -98,6 +128,66 @@ ISR(USART_RX_vect){
 	bufferTX = UDR0;
 	while (!(UCSR0A & (1<<UDRE0)));
 	UDR0 = bufferTX;
-	OutLEDS();
-	UART_msj();
+	if (mostrar == true)
+	{
+		OutLEDS();
+		mostrar = false;
+		WriteUART(10);
+		WriteUART(13);
+		Menu();
+	} 
+	else
+	{
+		if (bufferTX == 49)
+		{
+			WriteUART(10);
+			WriteUART(13);
+			readADC(6);
+			PORTB = ValorADC;
+			PORTC = (ValorADC >> 6);
+			centenas = ValorADC/100;
+			decenas = (ValorADC - (centenas*100))/10;
+			unidades = ValorADC - (centenas*100 + decenas*10);
+			mosCen = centenas + 48;
+			mosDec = decenas + 48;
+			mosUni = unidades + 48;
+			
+			WriteUART(10);
+			WriteUART(13);
+			char mensaje[30];
+			sprintf(mensaje, "Valor Potenciometro: %c%c%c\r\n", mosCen, mosDec, mosUni);
+			TextUART(mensaje);
+			
+			/*WriteUART(mosCen);
+			WriteUART(mosDec);
+			WriteUART(mosUni);*/
+			Menu();
+		}
+		else if (bufferTX == 50)
+		{
+			mostrar = false;
+			WriteUART(10);
+			WriteUART(13);
+			UART_msj();
+			//OutLEDS();
+			mostrar = true;
+			//Menu();
+		} 
+		else
+		{
+			WriteUART(10);
+			WriteUART(13);
+			TextUART("Input invalido");
+			Menu();
+			WriteUART(10);
+			WriteUART(13);
+		}
+	}
+	/*OutLEDS();
+	UART_msj();*/
+}
+
+ISR(ADC_vect){
+	ValorADC =  ADCH;
+	ADCSRA |= (1<<ADIF);
 }
